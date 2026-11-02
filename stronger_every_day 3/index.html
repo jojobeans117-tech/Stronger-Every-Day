@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#17251e">
+<meta name="description" content="Your personal adventure-style daily growth tracker.">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Stronger Every Day</title>
+<style>
+:root{--bg:#101a16;--panel:#1a2922;--panel2:#22352b;--line:#34483b;--text:#f0f1e8;--muted:#aab8a9;--green:#b6d28b;--gold:#d6b978;--red:#d78c75;--radius:18px}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#25392d 0,#101a16 58%);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);min-height:100vh}
+header{padding:22px 20px 14px;max-width:760px;margin:auto}.eyebrow{font-size:10px;letter-spacing:2.3px;color:var(--green);font-weight:800}.brand{font-family:Georgia,serif;font-size:29px;letter-spacing:.5px;margin:7px 0 3px}.sub{color:var(--muted);font-size:13px}
+main{max-width:760px;margin:auto;padding:0 15px 105px}.hero{background:linear-gradient(135deg,#293e31,#17251e);border:1px solid #526348;border-radius:23px;padding:18px;margin:10px 0 16px;box-shadow:0 14px 35px #0004}.heroTop{display:flex;justify-content:space-between;align-items:center}.tag{font-size:10px;letter-spacing:1.4px;color:var(--gold);font-weight:800}.day{font:24px Georgia,serif;margin:12px 0 3px}.quote{font-size:13px;color:#c4d0c0}.progressRow{display:flex;justify-content:space-between;margin:19px 0 8px;font-size:12px;color:var(--muted)}.track{height:9px;background:#0c1511;border-radius:99px;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,#9ebd75,#d4d99a);width:0%;border-radius:99px;transition:width .25s}
+.nav{display:flex;gap:7px;overflow:auto;padding:3px 0 13px;scrollbar-width:none}.nav button{flex:1;min-width:max-content;background:#1a2922;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:10px 13px;font-size:12px;font-weight:700}.nav button.active{background:var(--green);color:#17251e;border-color:var(--green)}
+.view{display:none}.view.active{display:block}.sectionHead{display:flex;align-items:center;justify-content:space-between;margin:14px 3px 10px}.sectionHead h2{font:21px Georgia,serif;margin:0}.small{font-size:11px;color:var(--muted)}
+.card{background:linear-gradient(145deg,#1d2e25,#17251e);border:1px solid var(--line);border-radius:var(--radius);padding:15px;margin-bottom:11px}.card h3{font-size:14px;margin:0 0 10px}.task{display:flex;gap:11px;align-items:flex-start;padding:11px 0;border-top:1px solid #ffffff12;font-size:13px;line-height:1.35}.task:first-of-type{border-top:0}.task input{appearance:none;width:20px;height:20px;flex:0 0 20px;border:1.5px solid #72836d;border-radius:6px;margin:0;position:relative}.task input:checked{background:var(--green);border-color:var(--green)}.task input:checked:after{content:"✓";position:absolute;color:#17251e;font-weight:900;left:4px;top:0}.task.done span{text-decoration:line-through;color:#91a18f}.time{display:block;color:var(--muted);font-size:10px;margin-top:3px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.stat{background:#1a2922;border:1px solid var(--line);border-radius:15px;padding:13px}.stat strong{display:block;font:25px Georgia,serif;color:var(--green)}.stat span{font-size:11px;color:var(--muted)}
+label{font-size:11px;color:var(--muted);display:block;margin:12px 0 6px}input[type=text],input[type=number],input[type=date],select,textarea{width:100%;background:#101a16;border:1px solid var(--line);border-radius:11px;padding:12px;color:var(--text);font:14px inherit}textarea{min-height:90px;resize:vertical}button.primary{background:var(--green);color:#17251e;border:0;border-radius:12px;padding:12px 15px;font-weight:800;width:100%;margin-top:12px}button.secondary{background:#293b30;color:var(--text);border:1px solid var(--line);border-radius:11px;padding:10px 12px;font-weight:700}
+.row{display:flex;gap:9px}.row>*{flex:1;min-width:0}.entry{padding:10px 0;border-top:1px solid #ffffff14;font-size:12px}.entry b{color:var(--green)}.muted{color:var(--muted)}.bottom{position:fixed;bottom:0;left:0;right:0;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:#101a16ed;backdrop-filter:blur(14px);border-top:1px solid var(--line);text-align:center;color:var(--muted);font-size:10px}
+.notice{font-size:11px;color:var(--muted);line-height:1.5;margin:12px 3px}.pill{display:inline-block;border:1px solid var(--line);padding:5px 8px;border-radius:99px;color:var(--gold);font-size:10px}
+@media(min-width:600px){main{padding-left:22px;padding-right:22px}.brand{font-size:34px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="eyebrow">FIELD JOURNAL · PERSONAL DEVELOPMENT</div>
+  <div class="brand">STRONGER EVERY DAY</div>
+  <div class="sub">Build strength. Build resilience. Enjoy the journey.</div>
+</header>
+<main>
+  <section class="hero">
+    <div class="heroTop"><span class="tag">YOUR DAILY EXPEDITION</span><span class="pill" id="dateLabel">DAY 01</span></div>
+    <div class="day" id="greeting">Monday mission</div>
+    <div class="quote">Progress is built through steady effort, smart recovery, and showing up again.</div>
+    <div class="progressRow"><span>Today's progress</span><b id="progressText">0 / 0 complete</b></div>
+    <div class="track"><div class="fill" id="progressFill"></div></div>
+  </section>
+  <nav class="nav">
+    <button class="active" data-tab="today">Today</button><button data-tab="log">Training log</button><button data-tab="journal">Mindset</button><button data-tab="history">History</button>
+  </nav>
+
+  <section class="view active" id="today">
+    <div class="sectionHead"><h2>Monday · Day 01</h2><span class="small">Your starting route</span></div>
+    <div id="tasks"></div>
+    <div class="card">
+      <h3>Daily check-in</h3>
+      <label for="mood">How are you feeling?</label><select id="mood"><option>Great</option><option selected>Good</option><option>Okay</option><option>Stressed</option><option>Exhausted</option></select>
+      <label for="energy">Energy level: <b id="energyVal">3 / 5</b></label><input id="energy" type="range" min="1" max="5" value="3" style="width:100%;accent-color:#b6d28b">
+      <label for="sleep">Sleep last night (hours)</label><input id="sleep" type="number" min="0" max="16" step=".5" placeholder="e.g. 8">
+      <button class="primary" id="saveCheckin">Save daily check-in</button>
+    </div>
+    <p class="notice">This is a guide, not a pass/fail test. Adjust optional movement to your training load and how you feel. Recovery counts.</p>
+  </section>
+
+  <section class="view" id="log">
+    <div class="sectionHead"><h2>Training log</h2><span class="small">Strength & performance</span></div>
+    <div class="card">
+      <h3>Record a training session or personal best</h3>
+      <label for="logDate">Date</label><input id="logDate" type="date">
+      <label for="activity">Activity</label><select id="activity"><option>Football lift</option><option>Football practice</option><option>Strength training</option><option>Lacrosse</option><option>Speed / conditioning</option><option>Walk / yoga / mobility</option><option>Recovery day</option></select>
+      <div class="row"><div><label for="exercise">Exercise / focus</label><input id="exercise" type="text" placeholder="e.g. Bench press"></div><div><label for="weight">Weight (lb)</label><input id="weight" type="number" placeholder="optional"></div></div>
+      <div class="row"><div><label for="reps">Reps</label><input id="reps" type="number" placeholder="optional"></div><div><label for="sets">Sets</label><input id="sets" type="number" placeholder="optional"></div></div>
+      <label for="notes">Notes</label><textarea id="trainingNotes" placeholder="How did it feel? Any progress?"></textarea>
+      <button class="primary" id="addLog">Save training entry</button>
+    </div>
+    <div class="card"><h3>Recent training</h3><div id="trainingEntries" class="muted">No entries yet. Your first session starts the log.</div></div>
+    <div class="card">
+      <h3>Baseline & goals</h3>
+      <div class="row"><div><label for="benchGoal">Bench goal (lb)</label><input id="benchGoal" type="number" value="215"></div><div><label for="squatGoal">Squat goal (lb)</label><input id="squatGoal" type="number" value="405"></div></div>
+      <label for="physiqueNote">Progress notes (optional)</label><textarea id="physiqueNote" placeholder="Strength, energy, athletic performance, how clothes fit..."></textarea>
+      <button class="secondary" id="saveGoals">Save goals</button>
+    </div>
+  </section>
+
+  <section class="view" id="journal">
+    <div class="sectionHead"><h2>Mindset & recovery</h2><span class="small">Check in with yourself</span></div>
+    <div class="card">
+      <h3>Evening field notes</h3>
+      <label for="win">One win today</label><textarea id="win" placeholder="What went well?"></textarea>
+      <label for="challenge">One challenge I handled</label><textarea id="challenge" placeholder="What tested me today?"></textarea>
+      <label for="lesson">What I learned</label><textarea id="lesson" placeholder="What will I carry into tomorrow?"></textarea>
+      <label for="gratitude">Something I'm grateful for</label><textarea id="gratitude" placeholder="A person, moment, opportunity..."></textarea>
+      <button class="primary" id="saveJournal">Save reflection</button>
+    </div>
+    <div class="card"><h3>Personal standard</h3><p class="muted" style="font-size:13px;line-height:1.55;margin-bottom:0">Be disciplined without being cruel to yourself. Train hard when it's appropriate, recover when it's needed, ask for help when you need it, and protect time for friends, family, faith, and fun.</p></div>
+  </section>
+
+  <section class="view" id="history">
+    <div class="sectionHead"><h2>Expedition history</h2><span class="small">Your progress over time</span></div>
+    <div class="grid">
+      <div class="stat"><strong id="daysStat">0</strong><span>Days with activity</span></div>
+      <div class="stat"><strong id="tasksStat">0</strong><span>Tasks completed</span></div>
+      <div class="stat"><strong id="logsStat">0</strong><span>Training entries</span></div>
+      <div class="stat"><strong id="reflectionsStat">0</strong><span>Reflections saved</span></div>
+    </div>
+    <div class="card" style="margin-top:12px"><h3>Daily records</h3><div id="historyEntries" class="muted">Your completed days will appear here.</div></div>
+    <button class="secondary" id="exportData" style="width:100%">Export my data (JSON)</button>
+    <p class="notice">Your information is stored on this device in this browser. Export a backup occasionally. Clearing browser data may erase your records.</p>
+  </section>
+</main>
+<div class="bottom">STEADY PROGRESS · SMART RECOVERY · YOUR OWN PACE</div>
+<script>
+const groups=[
+ {title:"Morning & discipline",tasks:[["Wake up at 5:35 AM","5:35 AM"],["Make bed, wash face, brush teeth","Morning"],["Football lift","6:00–7:00 AM"],["Shower, breakfast, get ready","7:00–8:50 AM"]]},
+ {title:"Academics & team",tasks:[["Math — stay engaged and ask questions","9:00–9:50 AM"],["Biology — active notes and questions","10:00–10:50 AM"],["SWS","11:00 AM–12:05 PM"],["Lunch and reset","12:05–12:25 PM"],["Football meeting","12:25–1:15 PM"]]},
+ {title:"Afternoon & study",tasks:[["Reset, eat, and use free time intentionally","1:15–4:00 PM"],["Math study block","4:00–4:50 PM"],["Short break","4:50–5:00 PM"],["Biology study block","5:00–5:40 PM"],["Other assignments and organize","5:40–6:00 PM"]]},
+ {title:"Recovery & personal time",tasks:[["Dinner and guilt-free free time","After 6:00 PM"],["Easy walk or gentle mobility (optional)","Only if it helps recovery"],["Evening hygiene and prepare for Tuesday","Before bed"],["Reflection and consistent bedtime","Night"]}
+];
+const key='sed_app_v1';
+let data=JSON.parse(localStorage.getItem(key)||'{"checks":{},"logs":[],"checkins":{},"journals":{},"goals":{"bench":215,"squat":405,"note":""}}');
+const today=()=>new Date().toISOString().slice(0,10);
+const save=()=>localStorage.setItem(key,JSON.stringify(data));
+function renderTasks(){
+ const host=document.getElementById('tasks');host.innerHTML='';
+ groups.forEach((g,gi)=>{const card=document.createElement('div');card.className='card';const h=document.createElement('h3');h.textContent=g.title;card.append(h);
+ g.tasks.forEach((t,ti)=>{const id=gi+'-'+ti;const row=document.createElement('label');row.className='task';row.style.margin='0';const cb=document.createElement('input');cb.type='checkbox';cb.checked=(data.checks[today()]||[]).includes(id);const span=document.createElement('span');span.textContent=t[0];const time=document.createElement('small');time.className='time';time.textContent=t[1];span.append(time);if(cb.checked)row.classList.add('done');cb.addEventListener('change',()=>{data.checks[today()]??=[];data.checks[today()]=cb.checked?[...new Set([...data.checks[today()],id])]:data.checks[today()].filter(x=>x!==id);save();renderProgress();row.classList.toggle('done',cb.checked)});row.append(cb,span);card.append(row)});host.append(card)});
+ renderProgress();
+}
+function renderProgress(){const total=groups.reduce((n,g)=>n+g.tasks.length,0),n=(data.checks[today()]||[]).length;document.getElementById('progressText').textContent=`${n} / ${total} complete`;document.getElementById('progressFill').style.width=(n/total*100)+'%';}
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===b.dataset.tab));if(b.dataset.tab==='history')renderHistory();if(b.dataset.tab==='log')renderLogs()}));
+document.getElementById('dateLabel').textContent=new Date().toLocaleDateString(undefined,{month:'short',day:'numeric'}).toUpperCase();
+document.getElementById('greeting').textContent=new Date().toLocaleDateString(undefined,{weekday:'long'})+' mission';
+document.getElementById('logDate').value=today();
+document.getElementById('energy').addEventListener('input',e=>document.getElementById('energyVal').textContent=e.target.value+' / 5');
+document.getElementById('saveCheckin').onclick=()=>{data.checkins[today()]={mood:document.getElementById('mood').value,energy:+document.getElementById('energy').value,sleep:document.getElementById('sleep').value};save();alert('Daily check-in saved.')};
+document.getElementById('addLog').onclick=()=>{data.logs.unshift({date:document.getElementById('logDate').value||today(),activity:document.getElementById('activity').value,exercise:document.getElementById('exercise').value,weight:document.getElementById('weight').value,reps:document.getElementById('reps').value,sets:document.getElementById('sets').value,notes:document.getElementById('trainingNotes').value});save();['exercise','weight','reps','sets','trainingNotes'].forEach(id=>document.getElementById(id).value='');renderLogs();alert('Training entry saved.')};
+function renderLogs(){const el=document.getElementById('trainingEntries');el.innerHTML=data.logs.length?'': 'No entries yet.';data.logs.slice(0,15).forEach(x=>{const d=document.createElement('div');d.className='entry';d.innerHTML=`<b>${esc(x.activity)}</b> · ${esc(x.date)}<br>${esc(x.exercise||'Session')}${x.weight?` · ${esc(x.weight)} lb`:''}${x.sets?` · ${esc(x.sets)} sets`:''}${x.reps?` × ${esc(x.reps)} reps`:''}<br><span class="muted">${esc(x.notes||'')}</span>`;el.append(d)})}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+document.getElementById('saveGoals').onclick=()=>{data.goals={bench:document.getElementById('benchGoal').value,squat:document.getElementById('squatGoal').value,note:document.getElementById('physiqueNote').value};save();alert('Goals saved.')};
+document.getElementById('saveJournal').onclick=()=>{data.journals[today()]={win:document.getElementById('win').value,challenge:document.getElementById('challenge').value,lesson:document.getElementById('lesson').value,gratitude:document.getElementById('gratitude').value};save();alert('Reflection saved.')};
+function renderHistory(){let days=Object.keys(data.checks).filter(k=>data.checks[k].length>0);document.getElementById('daysStat').textContent=days.length;document.getElementById('tasksStat').textContent=Object.values(data.checks).reduce((n,a)=>n+a.length,0);document.getElementById('logsStat').textContent=data.logs.length;document.getElementById('reflectionsStat').textContent=Object.keys(data.journals).length;const el=document.getElementById('historyEntries');el.innerHTML='';days.sort().reverse().forEach(d=>{let row=document.createElement('div');row.className='entry';row.innerHTML=`<b>${esc(d)}</b> · ${data.checks[d].length} tasks completed`;el.append(row)});if(!days.length)el.textContent='Your completed days will appear here.'}
+document.getElementById('exportData').onclick=()=>{const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='stronger-every-day-backup.json';a.click();URL.revokeObjectURL(url)};
+renderTasks();
+if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+</script>
+</body></html>

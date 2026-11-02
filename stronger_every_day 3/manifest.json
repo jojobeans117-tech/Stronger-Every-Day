@@ -1,0 +1,24 @@
+{
+  "name": "Stronger Every Day",
+  "short_name": "Stronger",
+  "description": "Your personal adventure-style daily growth tracker.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#101a16",
+  "theme_color": "#17251e",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
